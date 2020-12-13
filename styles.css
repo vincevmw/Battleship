@@ -1,0 +1,157 @@
+
+
+#menu {
+	justify-content: center;
+	text-align: center;
+	background-color: white;/*#c41230;*/
+	margin-right: 5%;
+	margin-left: 5%;
+	min-height: 100%;
+	padding-bottom: 10px;
+	
+}
+
+html {height:100%;}
+
+#menulist {
+	list-style: none;
+	display: flex;
+	margin-right: 50px;
+}
+
+.menulistitem {
+	text-decoration: none;
+	color: black;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	border: 1px solid black;
+	border-collapse: collapse;
+	width: 25%;
+	font-size: 25px;
+	
+}
+
+.menulistitem:hover {
+	background-color: black;
+	color: white;
+}
+
+#logo {
+	padding-bottom: 150px;
+	width: 50%;
+	height: auto;
+}
+
+h1 {
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+	font-size: 75px;
+	border-bottom: 10px solid #c41230;
+	width: 60%;
+	color: #13284c;
+	text-shadow: 2px 2px darkgrey;
+	font-family: Stencil Std, Impact, fantasy;/*'Courier New', cursive;*/
+	
+}
+
+body {
+	
+	height: 100%;
+	background-color: #13284c;
+	text-align: center;
+	
+}
+
+#profile {
+	max-width: 15%;
+	height: auto;
+}
+
+#cv {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 10px 10px darkgrey;
+	margin-left: 15%;
+	margin-right: 15%;
+	border: 1px solid black;
+	background-color: white;
+}
+
+#bio {
+	width: 50%;
+	font-size: 25px;
+	
+	
+}
+
+#home {
+	max-width: 3%;
+	height: auto;
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+#game {
+	max-width: 20%;
+	height: auto;
+}
+
+#rules {
+	box-shadow: 10px 10px darkgrey;
+	margin-left: 15%;
+	margin-right: 15%;
+	border: 1px solid black;
+	background-color: white;
+	
+}
+
+#desc {
+	
+	display: flex;
+	padding-left: 50px;
+	padding-right: 50px;
+	font-size: 25px;
+	height: 100%;
+	
+}
+
+#ruleslist {
+	text-align: left;
+}
+
+.ruleslistitem {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	font-size: 25px;
+}
+
+.loginfo {
+	box-shadow: 10px 10px darkgrey;
+	margin-left: 35%;
+	margin-right: 35%;
+	border: 1px solid black;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background-color: white;
+}
+
+#copyright {
+	margin-bottom: 0;
+	color: white;
+	text-align: center;
+}
+
+#genDB {
+	background-color: transparent;
+	border: none;
+	color: transparent;
+}
+
+#genDB:hover {
+	background-color: green;
+	border: 1px solid white;
+	color: white;
+}

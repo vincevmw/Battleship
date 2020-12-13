@@ -1,0 +1,33 @@
+<?php 
+	include 'init.php';
+?>
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Main Menu</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="styles.css">
+	</head>
+	<body>
+		<a href="index.php"><img id="home" src="images/home.png"></a>
+		<div id="menu">
+			
+			<img id="logo" src="images/battleshiplogo.png">
+			<h1>Register An Account</h1>
+			<form class="loginfo" action="register.php">
+				<label>Desired Username: </label><input id="DU" name="DU" type="text">
+				<br><br>
+				<label>Desired Password: </label><input id="DP" name="DP" type="password">
+				<br><br>
+				<label>Confirm Password: </label><input id="CP" name="CP" type="password">
+				<br><br>
+				<input type="submit" value="Submit">
+			</form>
+			
+			
+
+		</div>
+		<p id="copyright">&copy; VINCENT WEINBERGER - FRESNO STATE FALL SEMESTER 2020</p>
+	</body>
+</html>

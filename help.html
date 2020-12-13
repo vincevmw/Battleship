@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Main Menu</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="styles.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script>
+			$("#genDB").click(function() {
+				$.post("init.php", {
+					name: true
+					},
+					function(data, status) {
+						alert(data);
+					}
+				);
+			});
+		</script>
+	</head>
+	<body>
+		<a href="index.php"><img id="home" src="images/home.png"></a>
+		<div id="menu">
+			
+			<img id="logo" src="images/battleshiplogo.png">
+			<h1>How To Play</h1>
+			<article id="rules">
+				<img id="game" src="images/game.png">
+				<div id="desc">
+					<ul id="ruleslist">
+						<li class="ruleslistitem">Battleship - This game is played between two players, both with two boards visible to them: Their own board and a board representing their opponent's board.</li>
+						<li class="ruleslistitem">Before Turn One - Each player will secretly arrange ships on their board.  There are five different types of ships to deploy, 
+						each taking up a specific amount of consecutive squares on the board:
+							<ol>
+								<li class="ruleslistitem">A CARRIER of size 5</li>
+								<li class="ruleslistitem">A BATTLESHIP of size 4</li>
+								<li class="ruleslistitem">A DESTROYER of size 3</li>
+								<li class="ruleslistitem">A SUBMARINE of size 3</li>
+								<li class="ruleslistitem">A PATROL BOAT of size 2</li>
+							</ol>
+						</li class="ruleslistitem">
+						<li class="ruleslistitem">Superpowers - In this iteration of the game there are two "Superpowers" that may be used.  They are as follows:
+							<ol>
+								<li class="ruleslistitem">Send 3 torpedoes in one turn</li>
+								<li class="ruleslistitem">Send a giant torpedo of total size 5 that explodes in the shape of a "+".</li>
+							</ol>
+							Each player may use only ONE of these Superpowers ONE time per game.  And only if the player has exactly TWO ships remaining on the board.
+						</li class="ruleslistitem">
+						<li class="ruleslistitem">Taking Turns - After each player's ships have been placed on their board, a player will be chosen at random to become the first active player and begin the game.  
+						From that point on, players alternate turns, launching torpedoes at the position specified by the active player.  An "X" will be marked on both the opponent's own board 
+						and also the active player's board that corresponds to the opponent's board.  If the torpedo hits an opposing ship, the "X" will be red.  If not, it will be black.</li>
+						<li class="ruleslistitem">Sinking Ships - If a ship has been hit by a torpedo at each of its positions, it has been sunk.</li>
+						<li class="ruleslistitem">The game is won by the player who sinks every ship on his opponent's board.</li>
+					</ul>
+				</div>
+			</article>
+			
+		</div>
+		<span id="genButton"><button id="genDB">Click to generate DB on your localhost!</button></span>
+		<p id="copyright">&copy; VINCENT WEINBERGER - FRESNO STATE FALL SEMESTER 2020</p>
+	</body>
+</html>
