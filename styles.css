@@ -156,3 +156,17 @@ body {
 	color: white;
 }
 
+#loadingContainer {
+	margin-top: auto;
+	margin-bottom: auto;
+	padding-top: 200px;
+	padding-bottom: 200px;
+	font-size: 50px;
+	background-color: black;
+	color: white;
+	
+}
+
+#full {
+	font-size: 75px;
+}

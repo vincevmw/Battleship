@@ -46,7 +46,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Main Menu</title>
+		<title>Log In</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="styles.css">
 	</head>

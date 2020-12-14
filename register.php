@@ -30,8 +30,8 @@
 		
 		if ($conn->query($sql) === FALSE) die($sql . " GIVES THE ERROR: " . $conn->error . "<br>");
 		else {
-			$result = $conn->query($sql);
 			$n = $conn->query($sql)->num_rows;
+			
 			//If query returns more than 0 rows, username is taken.
 			if($n > 0) {
 				$regMsg = "ERROR - USERNAME ALREADY TAKEN";
@@ -52,7 +52,7 @@
 			$regMsg = "ERROR - PASSWORDS DO NOT MATCH";
 		}
 		else if(isset($_POST["reg"]) && (empty($_POST['DU']) || empty($_POST['DP']) || empty($_POST['CP']))) {
-						$regMsg = "PLEASE FILL ALL FIELDS";
+						$regMsg = "ERROR - PLEASE FILL IN ALL FIELDS";
 					}
 	}
 ?>
@@ -60,7 +60,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Main Menu</title>
+		<title>Register An Account</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="styles.css">
 	</head>
