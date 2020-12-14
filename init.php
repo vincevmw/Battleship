@@ -24,7 +24,7 @@
 		
 		//Initialize tables.
 		$sql = "CREATE TABLE IF NOT EXISTS registered (
-			username VARCHAR(30),
+			username VARCHAR(35) NOT NULL,
 			password VARCHAR(30),
 			PRIMARY KEY (username)
 		)";
@@ -35,7 +35,7 @@
 		}
 		
 		$sql = "CREATE TABLE IF NOT EXISTS logged_in (
-				username VARCHAR(30),
+				username VARCHAR(35) NOT NULL,
 				PRIMARY KEY (username)
 			)";
 			
@@ -44,7 +44,7 @@
 		}
 		
 		$sql = "CREATE TABLE IF NOT EXISTS finding_match (
-				username VARCHAR(30),
+				username VARCHAR(35) NOT NULL,
 				PRIMARY KEY (username)
 			)";
 			
@@ -53,7 +53,7 @@
 		}
 		
 		$sql = "CREATE TABLE IF NOT EXISTS game_states (
-				username VARCHAR(30),
+				username VARCHAR(35) NOT NULL,
 				hold VARCHAR(30),
 				PRIMARY KEY (username)
 			)";

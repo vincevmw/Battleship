@@ -51,7 +51,7 @@ h1 {
 	width: 60%;
 	color: #13284c;
 	text-shadow: 2px 2px darkgrey;
-	font-family: Stencil Std, Impact, fantasy;/*'Courier New', cursive;*/
+	font-family: Impact, fantasy;/*'Courier New', cursive;*/
 	
 }
 
@@ -155,3 +155,4 @@ body {
 	border: 1px solid white;
 	color: white;
 }
+
