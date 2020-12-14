@@ -6,14 +6,16 @@
 		<link rel="stylesheet" href="styles.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script>
-			$("#genDB").click(function() {
-				$.post("init.php", {
-					name: true
-					},
-					function(data, status) {
-						alert(data);
-					}
-				);
+			$(document).ready(function() {
+				$("#genDB").click(function() {
+					$.ajax({
+						type: "POST",
+						url: "init.php",
+						data: {init: true}
+					}).done(function(msg) {
+						alert(msg);
+					});
+				});
 			});
 		</script>
 	</head>
