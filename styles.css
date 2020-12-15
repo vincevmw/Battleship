@@ -55,12 +55,16 @@ h1 {
 	
 }
 
+
 body {
-	
 	height: 100%;
 	background-color: #13284c;
 	text-align: center;
 	
+}
+
+body#gameOn {
+	background-color: white;
 }
 
 #profile {
@@ -169,4 +173,40 @@ body {
 
 #full {
 	font-size: 75px;
+}
+
+.board {
+	display: inline-block;
+	
+}
+
+table, td, th {
+  border: 1px solid black;
+}
+
+.board {
+	border-collapse:collapse;
+}
+
+td {
+	width: 75px;
+	height: 75px;
+}
+
+h2 {
+	display: inline-block;
+	
+}
+
+#yb {
+	padding-right: 350px;
+}
+
+#eb {
+	padding-left: 350px;
+}
+
+.board {
+	background-image: url(images/boardbg.jpg);
+	background-position: left bottom;
 }
