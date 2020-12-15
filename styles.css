@@ -214,3 +214,11 @@ h2 {
 .coord {
 	color: white;
 }
+
+#subdir {
+	display: inline-block;
+}
+
+#vhswitch {
+	display: inline-block;
+}

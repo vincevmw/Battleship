@@ -75,7 +75,9 @@
 				for(let i=1; i<11; i++) {
 					for(let j=1; j<11; j++) {
 						$("#pCoord"+i+j).hover(function() {
-							
+							if(!(i-1 < 1)) {
+								
+							}
 						});
 					}
 				}
