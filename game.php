@@ -72,11 +72,30 @@
 				}
 				
 				
+				for(let i=1; i<11; i++) {
+					for(let j=1; j<11; j++) {
+						$("#pCoord"+i+j).hover(function() {
+							
+						});
+					}
+				}
+				
+				$("#dir").html("PLEASE PLACE YOUR SHIPS!");
+				$("#subdir").html("Currently placing Carrier(size of 5)...");
+				
+				$("#vhb").click(function(){
+					
+					
+				});
+				
 			});
 		</script>
 	</head>
 	<body id="gameOn">
 		<div id="boardLabels"><h2 id="yb">YOUR BOARD</h2><h2 id="eb">ENEMY BOARD</h2></div>
 		<div id="boards"></div>
+		<div id="dir"></div>
+		<div id="subdir"></div>
+		<div id="vhswitch"><button id="vhb">Switch (Vertical/Horizontal) Placement</button></div>
 	</body>
 </html>
