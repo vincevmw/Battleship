@@ -48,12 +48,14 @@
 		}
 	}
 	else {
-		if(!($_POST['DP'] === $_POST['CP'])) {
-			$regMsg = "ERROR - PASSWORDS DO NOT MATCH";
+		if(isset($_POST['reg'])) {
+			if(!($_POST['DP'] === $_POST['CP'])) {
+				$regMsg = "ERROR - PASSWORDS DO NOT MATCH";
+			}
+			else if(isset($_POST["reg"]) && (empty($_POST['DU']) || empty($_POST['DP']) || empty($_POST['CP']))) {
+							$regMsg = "ERROR - PLEASE FILL IN ALL FIELDS";
+						}
 		}
-		else if(isset($_POST["reg"]) && (empty($_POST['DU']) || empty($_POST['DP']) || empty($_POST['CP']))) {
-						$regMsg = "ERROR - PLEASE FILL IN ALL FIELDS";
-					}
 	}
 ?>
 
@@ -88,6 +90,6 @@
 			
 
 		</div>
-		<p id="copyright">&copy; VINCENT WEINBERGER - FRESNO STATE FALL SEMESTER 2020</p>
+		<p id="copyright">&copy; VINCENT WEINBERGER - FRESNO STATE FALL SEMESTER 2020<img id="paw" src="images/paw.png"></p>
 	</body>
 </html>

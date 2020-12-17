@@ -57,7 +57,7 @@ h1 {
 
 
 body {
-	height: 100%;
+	/*height: 100%;*/
 	background-color: #13284c;
 	text-align: center;
 	
@@ -189,8 +189,8 @@ table, td, th {
 }
 
 td {
-	width: 75px;
-	height: 75px;
+	width: 4.25rem;
+	height: 4.25rem;
 }
 
 h2 {
@@ -199,11 +199,11 @@ h2 {
 }
 
 #yb {
-	padding-right: 350px;
+	padding-right: 20rem;
 }
 
 #eb {
-	padding-left: 350px;
+	padding-left: 20rem;
 }
 
 .board {
@@ -215,10 +215,9 @@ h2 {
 	color: white;
 }
 
-#subdir {
-	display: inline-block;
-}
 
-#button {
-	display: inline-block;
+
+#paw {
+	width: 2rem;
+	height: 2rem;
 }

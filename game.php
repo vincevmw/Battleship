@@ -26,6 +26,7 @@
 						let hold= ""+i+j;
 						game.PBO[hold] = {
 							ship: false,
+							type: null,
 							torpedo: false
 						};
 						
@@ -44,6 +45,7 @@
 						let hold= ""+i+j;
 						game.EBO[hold] = {
 							ship: false,
+							type: null,
 							torpedo: false
 						};
 						
@@ -84,14 +86,14 @@
 					if(vh == "vertical") {
 						for(let i=0; i<length; i++) {
 							let hold= ""+(row+i)+column;
-							if(game.PBO[hold].ship == true) {/*alert("Should say: true (not a string): "+game.PBO[hold].ship+"... Found at "+hold+" and placement is: "+placingVH);*/ return true;}
+							if(game.PBO[hold].ship == true) return true;
 						}	
 					}
 					else {
 						for(let i=0; i<length; i++) {
 							let hold= ""+row+(column+i);
 							
-							if(game.PBO[hold].ship == true) {/*alert("Should say: true (not a string): "+game.PBO[hold].ship+"... Found at "+hold+" and placement is: "+placingVH);*/ return true;}
+							if(game.PBO[hold].ship == true) return true;
 						}
 					}
 					return false;
@@ -144,7 +146,7 @@
 						for(let j=1; j<11; j++) {
 							$("#pCoord"+i+j).unbind("mouseover mouseout");
 							$("#pCoord"+i+j).mouseover(function() {
-								//$(this).css("background-color", "lightgreen");
+								
 								if(j+length > 11) {
 									for(let k=j; k<11; k++) {
 										if($("#pCoord"+i+k).css("background-color") == "rgb(169, 169, 169)") continue;
@@ -181,6 +183,39 @@
 				$("#dir").html("PLEASE PLACE YOUR SHIPS!");
 				$("#subdir").html("Currently placing Carrier(size of 5)...");
 				
+				//After ships have been placed the player is now in a Ready State and is ready to begin the match.
+				function readyState() {
+					for(let i=1; i<11; i++)
+						for(let j=1; j<11; j++)
+							$("#pCoord"+i+j).unbind("click").unbind("mouseover mouseout");
+							
+					$("#dir").html("YOU ARE NOW READY TO BEGIN THE MATCH!");
+					$("#subdir").html("Please wait for opponent to finish placing ships...");
+					$("#button").hide();
+					game.ready = true;
+					
+					var gameObj = JSON.stringify(game);
+					
+					$.ajax({
+						type: "POST",
+						url: "gameHelper.php",
+						data: {gameSet: gameObj}
+					}).done(function(msg) {alert(msg);});
+					
+					setInterval(function() {
+						$.ajax({
+						type: "POST",
+						url: "gameHelper.php",
+						data: {readyGame: true}
+					}).done(function(msg) {
+						if(msg == "ready") {
+							startMatch();
+						}
+					});
+					
+					
+					}, 3000);
+				}
 				
 				//Setting action on click during placement.
 				function setClick(hv, length) {
@@ -194,6 +229,7 @@
 										for(let k=i; k<i+length; k++) {
 											$("#pCoord"+k+j).css("background-color", "darkgrey");
 											game.PBO[""+k+j].ship = true; 
+											game.PBO[""+k+j].type = ships[currShip];
 										}
 										
 										if(currShip == 4) readyState();
@@ -212,6 +248,7 @@
 										for(let k=j; k<j+length; k++) {
 											$("#pCoord"+i+k).css("background-color", "darkgrey");
 											game.PBO[""+i+k].ship = true;
+											game.PBO[""+i+k].type = ships[currShip];
 										}
 										
 										if(currShip == 4) readyState();
@@ -238,6 +275,7 @@
 					
 				});
 				
+				//Initialize our onClicks.
 				setClick(placingVH, currLength);
 				
 			});

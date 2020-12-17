@@ -56,5 +56,5 @@
 		</div>
 		
 	</body>
-	<p id="copyright">&copy; VINCENT WEINBERGER - FRESNO STATE FALL SEMESTER 2020</p>
+	<p id="copyright">&copy; VINCENT WEINBERGER - FRESNO STATE FALL SEMESTER 2020<img id="paw" src="images/paw.png"></p>
 </html>

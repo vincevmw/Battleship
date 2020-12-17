@@ -54,7 +54,13 @@
 		
 		$sql = "CREATE TABLE IF NOT EXISTS game_states (
 				username VARCHAR(35) NOT NULL,
-				hold VARCHAR(30),
+				ready BIT(1),
+				turnCount SMALLINT(3),
+				won 	BIT(1),
+				turnThisPlayer BIT(1),
+				ships VARCHAR(100),
+				pbo VARCHAR(5000),
+				ebo VARCHAR(5000),
 				PRIMARY KEY (username)
 			)";
 			

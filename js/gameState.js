@@ -3,42 +3,38 @@ class GameState {
 	
 	constructor() {
 		//Create all of our necessary fields.
-		this.superPower = false;
-		this.started = false;
-		this.ended = false;
 		this.ready = false;
 		this.won = false;
 		this.score = 0;
 		this.turnCount = 0;
 		this.turnThisPlayer = false;
-		this.placing = true;
 		this.ships = {
-			carrier: {
+			Carrier: {
 				size: 5,
 				hits: 0,
 				placed: null,
 				sunk: false
 				
 			},
-			battleship: {
+			Battleship: {
 				size: 4,
 				hits: 0,
 				placed: null,
 				sunk: false
 			},
-			destroyer: {
+			Destroyer: {
 				size: 3,
 				hits: 0,
 				placed: null,
 				sunk: false
 			},
-			submarine: {
+			Submarine: {
 				size: 3,
 				hits: 0,
 				placed: null,
 				sunk: false
 			},
-			patrolboat: {
+			Patrolboat: {
 				size: 2,
 				hits: 0,
 				placed: null,
