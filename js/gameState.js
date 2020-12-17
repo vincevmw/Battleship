@@ -16,38 +16,38 @@ class GameState {
 			carrier: {
 				size: 5,
 				hits: 0,
-				placed: false,
+				placed: null,
 				sunk: false
 				
 			},
 			battleship: {
 				size: 4,
 				hits: 0,
-				placed: false,
+				placed: null,
 				sunk: false
 			},
 			destroyer: {
 				size: 3,
 				hits: 0,
-				placed: false,
+				placed: null,
 				sunk: false
 			},
 			submarine: {
 				size: 3,
 				hits: 0,
-				placed: false,
+				placed: null,
 				sunk: false
 			},
 			patrolboat: {
 				size: 2,
 				hits: 0,
-				placed: false,
+				placed: null,
 				sunk: false
 			}
 		};
 		//States of each coordinate. Has a torpedo hit here? Is there a ship here?
-		this.playerBoardObj = {};
-		this.enemyBoardObj = {};
+		this.PBO = {}; //Player Board Object
+		this.EBO = {}; // Enemy Board Object
 	}
 }
 		

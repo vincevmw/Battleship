@@ -23,7 +23,8 @@
 					for(let j=0; j<11; j++) {
 						var td = $("<td></td>").attr("id", "pCoord"+i+j).attr("class", "coord");
 						
-						game.playerBoardObj["pCoord"+i+j] = {
+						let hold= ""+i+j;
+						game.PBO[hold] = {
 							ship: false,
 							torpedo: false
 						};
@@ -40,7 +41,8 @@
 					for(let j=0; j<11; j++) {
 						var td = $("<td></td>").attr("id", "eCoord"+i+j).attr("class", "coord");
 						
-						game.enemyBoardObj["eCoord"+i+j] = {
+						let hold= ""+i+j;
+						game.EBO[hold] = {
 							ship: false,
 							torpedo: false
 						};
@@ -71,24 +73,172 @@
 					
 				}
 				
+				//Keep track of some board state variables
+				var ships = Object.keys(game.ships);
+				var currShip = 0;
+				var currLength = 5;
+				var placingVH = "vertical";
 				
-				for(let i=1; i<11; i++) {
-					for(let j=1; j<11; j++) {
-						$("#pCoord"+i+j).hover(function() {
-							if(!(i-1 < 1)) {
+				//Check if there is a ship in the path of our placement. If true, there is a ship in the way.
+				function checkShip(row, column, length, vh) {
+					if(vh == "vertical") {
+						for(let i=0; i<length; i++) {
+							let hold= ""+(row+i)+column;
+							if(game.PBO[hold].ship == true) {/*alert("Should say: true (not a string): "+game.PBO[hold].ship+"... Found at "+hold+" and placement is: "+placingVH);*/ return true;}
+						}	
+					}
+					else {
+						for(let i=0; i<length; i++) {
+							let hold= ""+row+(column+i);
+							
+							if(game.PBO[hold].ship == true) {/*alert("Should say: true (not a string): "+game.PBO[hold].ship+"... Found at "+hold+" and placement is: "+placingVH);*/ return true;}
+						}
+					}
+					return false;
+				}
+				
+				//Function to start placing Vertically (sets hover functionality).
+				function placingV(length) {
+					
+					for(let i=1; i<11; i++) {
+						for(let j=1; j<11; j++) {
+							$("#pCoord"+i+j).unbind("mouseover mouseout");
+							$("#pCoord"+i+j).mouseover(function() {
 								
-							}
-						});
+								if(i+length > 11) {
+									for(let k=i; k<11; k++) {
+										if($("#pCoord"+k+j).css("background-color") == "rgb(169, 169, 169)") continue;
+										else $("#pCoord"+k+j).css("background-color", "red");
+									}
+								}
+								else {
+									for(let k=i; k<i+length; k++) {
+										if($("#pCoord"+k+j).css("background-color") == "rgb(169, 169, 169)") continue;
+										else $("#pCoord"+k+j).css("background-color", "lightgreen");
+									}
+								}
+							})
+							.mouseout(function() {
+								if(i+length > 11) {
+									for(let k=i; k<11; k++) {
+										//alert($("#pCoord"+k+j).css("background-color"));
+										if($("#pCoord"+k+j).css("background-color") == "rgb(169, 169, 169)") continue;
+										else $("#pCoord"+k+j).css("background-color", "revert");
+									}
+								}
+								else {
+									for(let k=i; k<i+length; k++) {
+										//alert($("#pCoord"+k+j).css("background-color"));
+										if($("#pCoord"+k+j).css("background-color") == "rgb(169, 169, 169)") continue;
+										else $("#pCoord"+k+j).css("background-color", "revert");
+									}
+								}
+							});
+						}
 					}
 				}
+				
+				//Function to start placing Horizontally (sets the hover functionality of the board).
+				function placingH(length) {
+					for(let i=1; i<11; i++) {
+						for(let j=1; j<11; j++) {
+							$("#pCoord"+i+j).unbind("mouseover mouseout");
+							$("#pCoord"+i+j).mouseover(function() {
+								//$(this).css("background-color", "lightgreen");
+								if(j+length > 11) {
+									for(let k=j; k<11; k++) {
+										if($("#pCoord"+i+k).css("background-color") == "rgb(169, 169, 169)") continue;
+										else $("#pCoord"+i+k).css("background-color", "red");
+									}
+								}
+								else {
+									for(let k=j; k<j+length; k++) {
+										if($("#pCoord"+i+k).css("background-color") == "rgb(169, 169, 169)") continue;
+										else $("#pCoord"+i+k).css("background-color", "lightgreen");
+									}
+								}
+							})
+							.mouseout(function() {
+								if(j+length > 11) {
+									for(let k=j; k<11; k++) {
+										if($("#pCoord"+i+k).css("background-color") == "rgb(169, 169, 169)") continue;
+										else $("#pCoord"+i+k).css("background-color", "revert");
+									}
+								}
+								else {
+									for(let k=j; k<j+length; k++) {
+										if($("#pCoord"+i+k).css("background-color") == "rgb(169, 169, 169)") continue;
+										else $("#pCoord"+i+k).css("background-color", "revert");
+									}
+								}
+							});
+						}
+					}
+				}
+				//Setting default start as Vertical placement.
+				placingV(currLength);
 				
 				$("#dir").html("PLEASE PLACE YOUR SHIPS!");
 				$("#subdir").html("Currently placing Carrier(size of 5)...");
 				
+				
+				//Setting action on click during placement.
+				function setClick(hv, length) {
+					for(let i=1; i<11; i++) {
+						for(let j=1; j<11; j++) {
+							$("#pCoord"+i+j).unbind("click");
+							$("#pCoord"+i+j).click(function() {
+								
+								if(hv == "vertical") {
+									if(i+length < 12 && !checkShip(i, j, length, hv)) {
+										for(let k=i; k<i+length; k++) {
+											$("#pCoord"+k+j).css("background-color", "darkgrey");
+											game.PBO[""+k+j].ship = true; 
+										}
+										
+										if(currShip == 4) readyState();
+										else {
+											currShip++;
+											currLength = parseInt(game.ships[ships[currShip]].size);
+											$("#subdir").html("Currently placing "+ships[currShip]+"(size of "+currLength+")...");
+											placingVH = "vertical";
+											placingV(currLength);
+											setClick(placingVH, currLength);
+										}
+									}
+								}
+								else {
+									if(j+length < 12 && !checkShip(i, j, length, hv)) {
+										for(let k=j; k<j+length; k++) {
+											$("#pCoord"+i+k).css("background-color", "darkgrey");
+											game.PBO[""+i+k].ship = true;
+										}
+										
+										if(currShip == 4) readyState();
+										else {
+											currShip++;
+											currLength = parseInt(game.ships[ships[currShip]].size);
+											placingVH = "vertical";
+											placingV(currLength);
+											setClick(placingVH, currLength);
+										}
+									}
+								}
+								
+							
+							});
+						}
+					}
+				}
+				
+				//Calling our Vertical and Horizontal switch functions back and forth when clicking the button.
 				$("#vhb").click(function(){
-					
+					if(placingVH == "vertical") {placingVH = "horizontal"; placingH(currLength); setClick(placingVH, currLength);}
+					else {placingVH = "vertical"; placingV(currLength); setClick(placingVH, currLength);}
 					
 				});
+				
+				setClick(placingVH, currLength);
 				
 			});
 		</script>
@@ -98,6 +248,6 @@
 		<div id="boards"></div>
 		<div id="dir"></div>
 		<div id="subdir"></div>
-		<div id="vhswitch"><button id="vhb">Switch (Vertical/Horizontal) Placement</button></div>
+		<div id="button"><button id="vhb">Switch (Vertical/Horizontal) Placement</button></div>
 	</body>
 </html>

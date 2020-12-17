@@ -208,7 +208,7 @@ h2 {
 
 .board {
 	background-image: url(images/boardbg.jpg);
-	background-position: left bottom;
+	background-position: bottom left;
 }
 
 .coord {
@@ -219,6 +219,6 @@ h2 {
 	display: inline-block;
 }
 
-#vhswitch {
+#button {
 	display: inline-block;
 }
